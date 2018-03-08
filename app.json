@@ -1,11 +1,13 @@
 {
   "pages":[
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/logs/logs",
     "pages/categories/categories",
     "pages/addCategory/addCategory",
     "pages/home/home",
-    "pages/addBill/addBill"
+    "pages/addRecord/addRecord",
+    "pages/selectCategory/selectCategory"
   ],
   "tabBar":{
     "list":[

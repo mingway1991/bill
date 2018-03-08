@@ -5,7 +5,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的'
     })
-    var access_token = wx.getStorageSync('access_token')
   },
   onShow: function () {
     var that = this

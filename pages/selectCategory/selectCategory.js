@@ -1,17 +1,15 @@
 Page({
   data: {
     access_token: '',
-    categories: []
+    categories: [],
+    selected_category: {}
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
-      title: '类别列表'
+      title: '选择类别'
     })
     this.access_token = wx.getStorageSync('access_token')
-  },
-  //跳转 
-  gotoAddCategory: function () {
-    wx.navigateTo({ url: '../../pages/addCategory/addCategory' })
+    this.getAllCategories()
   },
   onShow: function () {
     var that = this
@@ -19,10 +17,36 @@ Page({
     if (that.data.isBack) {
       wx.navigateBack()
     }
-    that.getAllCategories()
   },
-  getAllCategories: function() {
-    let that = this; 
+  selectCategoryAction: function (e) {
+    let that = this;
+    if (e['type'] == 'tap') {
+      var value = e['target']['dataset']['alphaBeta']
+      var pages = getCurrentPages();
+      var currPage = pages[pages.length - 1];   //当前页面
+      var prevPage = pages[pages.length - 2];  //上一个页面
+      for (var index in that.data.categories) {
+        if (that.data.categories[index]['id'] == value) {
+          that.setData({
+            selectedCategory: that.data.categories[index]
+          })
+          break
+        }
+      }
+      var new_categories = prevPage.data.categories
+      that.data.selectedCategory['value'] = 0
+      new_categories.push(that.data.selectedCategory)
+      console.log(new_categories)
+      //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+      prevPage.setData({
+        categories: new_categories
+      })
+
+      wx.navigateBack();
+    }
+  },
+  getAllCategories: function () {
+    let that = this;
     //创建一个dialog
     wx.showToast({
       title: '获取类别列表...',
@@ -45,7 +69,7 @@ Page({
         if (res.statusCode == 200) {
           that.setData({
             categories: res.data['data']
-          }); 
+          });
         } else {
           console.log(res.data);
         }
@@ -59,7 +83,7 @@ Page({
       }
     })
   },
-  removeAction: function(e) {
+  removeAction: function (e) {
     console.log(e)
     let that = this;
     if (e['type'] == 'tap') {
@@ -69,7 +93,7 @@ Page({
     }
   },
   DelCategory: function (id) {
-    let that = this; 
+    let that = this;
     //创建一个dialog
     wx.showToast({
       title: '正在加载...',
@@ -78,7 +102,7 @@ Page({
     });
     //请求服务器
     wx.request({
-      url: 'https://api.bohetanglao.com/app/bill/category/'+id,
+      url: 'https://api.bohetanglao.com/app/bill/category/' + id,
       data: {
       },
       method: 'DELETE', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -98,7 +122,7 @@ Page({
             mask: true
           })
           setTimeout(function () {
-            that.getAllCategories() 
+            that.getAllCategories()
           }, 1500)
         } else {
           console.log(res.data);

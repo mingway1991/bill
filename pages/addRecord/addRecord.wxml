@@ -1,0 +1,13 @@
+<button bindtap='gotoSelectCategory'>添加条目</button>
+<div class='page list js_show'>
+<div class="weui-cells__title">记录</div> 
+   <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
+    <div class="weui-cell__bd"> 
+     <p>{{idx+1}}.</p> {{category.name}} 
+    </div>
+    <div class="weui-cell__bd"> 
+     <input class="weui-input" name="input" placeholder="请输入金额" value="{{category.value}}" bindchange="changeValue" data-alpha-beta="{{category.id}}"></input>
+    </div>
+   </div> 
+</div>
+<button bindtap='saveRecord'>保存</button>

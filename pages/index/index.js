@@ -4,17 +4,23 @@ const app = getApp()
 
 Page({
   data: {
+    access_token: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    total: 0
+    total: 0,
+    create_time: ''
   },
   //跳转 
   gotoCategories: function () {
     wx.navigateTo({ url: '../../pages/categories/categories' })
   }, 
   gotoAddBill: function () {
-    wx.navigateTo({ url: '../../pages/addBill/addBill' })
+    wx.navigateTo({ url: '../../pages/addRecord/addRecord' })
+  },
+  onShow: function () {
+    this.access_token = wx.getStorageSync('access_token')
+    this.getTotalMoney()
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
@@ -53,6 +59,54 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  getTotalMoney: function () {
+    let that = this;
+    //创建一个dialog
+    wx.showToast({
+      title: 'loading...',
+      icon: 'loading',
+      duration: 10000
+    });
+    //请求服务器
+    wx.request({
+      url: 'https://api.bohetanglao.com/app/bill/total',
+      data: {
+      },
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + that.access_token
+      }, // 设置请求的 header
+      success: function (res) {
+        // success
+        wx.hideToast();
+        if (res.statusCode == 200) {
+          if (res.data['errorCode']==0) {
+            console.log(res.data['data']);
+            var create_time = ''
+            if (res.data['data'].hasOwnProperty("create_time")) {
+              create_time = res.data['data']['create_time']
+            }
+            that.setData({
+              total: res.data['data']['money'],
+              create_time: create_time
+            })
+          } else {
+            console.log(res.data);
+          }
+        } else {
+          console.log(res.data);
+        }
+      },
+      fail: function () {
+        // fail
+        wx.hideToast();
+      },
+      complete: function () {
+        // complete
+      }
     })
   }
 })

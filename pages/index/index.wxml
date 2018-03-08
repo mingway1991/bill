@@ -1,7 +1,9 @@
 <!--index.wxml--> 
-<button bindtap='gotoCategories' url="../../pages/categories/categories">类别管理</button>
-<button bindtap='gotoAddBill' url="../../pages/addBill/addBill">记账</button>
 <div class="weui-flex">
   <div class="weui-flex__item weui-flex justify align" style="font-size:30px;"><p>{{total}}</p>
   </div>
 </div>
+<div class="weui-flex__item weui-flex justify align" style="font-size:12px;"><p>{{create_time}}</p>
+  </div>
+<button bindtap='gotoCategories' url="../../pages/categories/categories">类别管理</button>
+<button bindtap='gotoAddBill' url="../../pages/addBill/addBill">记账</button>
