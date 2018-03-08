@@ -1,10 +1,10 @@
-<form bindsubmit="formSubmit">
-<div class="weui-cells weui-cells_form">
-  <div class="weui-cell__bd">
-    <input class="weui-input" name="input" placeholder="请输入类别名称"></input>
-  </div>
-  <view class="btn-area">
-    <button formType="submit">提交</button>
-  </view>
-</div>
-</form>
+<view class="weui-media-box">
+  <form bindsubmit="formSubmit">
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="input" placeholder="请输入类别名称"></input>
+      </view>
+      <view class="btn-area">
+          <button formType="submit" type="primary">提交</button>
+      </view>
+  </form>
+</view>

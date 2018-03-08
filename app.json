@@ -5,17 +5,24 @@
     "pages/logs/logs",
     "pages/categories/categories",
     "pages/addCategory/addCategory",
-    "pages/home/home",
+    "pages/my/my",
+    "pages/records/records",
     "pages/addRecord/addRecord",
     "pages/selectCategory/selectCategory"
   ],
   "tabBar":{
+    "color":"#000000",
+    "selectedColor": "#1296db",
     "list":[
       {"pagePath":"pages/index/index",
-      "text":"首页"
+      "text":"首页",
+      "iconPath":"images/index.png",
+      "selectedIconPath":"images/index_selected.png"
       },
-      {"pagePath": "pages/home/home",
-        "text": "我的"
+      {"pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_selected.png"
       }
     ]
   },

@@ -1,0 +1,9 @@
+<!--pages/records/records.wxml-->
+<view class='page list js_show'>
+<view class="weui-cells__title">记录列表</view> 
+   <view class="weui-cell weui-cell_swiped" wx:for="{{records}}" wx:for-index="idx" wx:for-item="record"> 
+    <view class="weui-cell__bd"> 
+     <p>{{idx+1}}.</p> 金额：{{record.money}} {{record.created_at}}
+    </view>
+   </view> 
+</view>

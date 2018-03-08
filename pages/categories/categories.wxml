@@ -1,13 +1,24 @@
-<button bindtap='gotoAddCategory' url="../../pages/categories/categories">新增类别</button>
- 
-<div class='page list js_show'>
-<div class="weui-cells__title">类别列表</div> 
-   <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
-    <div class="weui-cell__bd"> 
+
+<view class="page">
+    <view class="page__bd">
+      <view class="weui-panel">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box">
+                  <button class="weui-btn mini-btn weui-flex__item" type="primary" size="mini" bindtap='gotoAddCategory'>新增类别</button>
+                </view>
+            </view>
+      </view>
+    </view>
+</view>
+
+<view class='page list js_show'>
+<view class="weui-cells__title">类别列表</view> 
+   <view class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
+    <view class="weui-cell__bd"> 
      <p>{{idx+1}}.</p> {{category.name}} 
-    </div> 
-    <div class="weui-cell__ft"> 
+    </view> 
+    <view class="weui-cell__ft"> 
      <view bindtap='removeAction' data-alpha-beta="{{category.id}}">删除</view>
-    </div> 
-   </div> 
-</div>
+    </view> 
+   </view> 
+</view>

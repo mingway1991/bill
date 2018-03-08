@@ -11,13 +11,6 @@ Page({
     total: 0,
     create_time: ''
   },
-  //跳转 
-  gotoCategories: function () {
-    wx.navigateTo({ url: '../../pages/categories/categories' })
-  }, 
-  gotoAddBill: function () {
-    wx.navigateTo({ url: '../../pages/addRecord/addRecord' })
-  },
   onShow: function () {
     this.access_token = wx.getStorageSync('access_token')
     this.getTotalMoney()

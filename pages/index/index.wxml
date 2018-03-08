@@ -1,9 +1,35 @@
 <!--index.wxml--> 
-<div class="weui-flex">
-  <div class="weui-flex__item weui-flex justify align" style="font-size:30px;"><p>{{total}}</p>
-  </div>
-</div>
-<div class="weui-flex__item weui-flex justify align" style="font-size:12px;"><p>{{create_time}}</p>
-  </div>
-<button bindtap='gotoCategories' url="../../pages/categories/categories">类别管理</button>
-<button bindtap='gotoAddBill' url="../../pages/addBill/addBill">记账</button>
+<view class="page">
+    <view class="page__bd">
+      <view class="weui-panel">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">总金额：{{total}}</view>
+                    <view class="weui-media-box__desc">{{create_time}}</view>
+                </view>
+                  <view class="weui-media-box weui-media-box_small-appmsg">
+                    <view class="weui-cells weui-cells_in-small-appmsg">
+                        <navigator url="../../pages/categories/categories" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>类别管理</view>
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </navigator>
+                        <navigator url="../../pages/records/records" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>记录列表</view>
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </navigator>
+                        <navigator url="../../pages/addRecord/addRecord" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>记账</view>
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

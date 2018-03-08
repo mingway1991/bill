@@ -18,7 +18,13 @@ Page({
     }
   },
   gotoSelectCategory: function() {
-    wx.navigateTo({ url: '../../pages/selectCategory/selectCategory' })
+    let that = this
+    var categoryIdArray = []
+    for (var index in that.data.categories) {
+      categoryIdArray.push(that.data.categories[index]['id'])
+    }
+    var categoryIdStr = categoryIdArray.join(',')
+    wx.navigateTo({ url: '../../pages/selectCategory/selectCategory?categoryIdStr='+ categoryIdStr})
   },
   changeValue: function(e) {
     let that = this

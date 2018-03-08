@@ -2,9 +2,9 @@
 <div class="weui-cells__title">类别列表</div> 
    <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
     <div class="weui-cell__bd"> 
-    <view bindtap='selectCategoryAction' data-alpha-beta="{{category.id}}">
+    <button bindtap='selectCategoryAction' data-alpha-beta="{{category.id}}" disabled="{{category.disabled}}">
      <p>{{idx+1}}.</p> {{category.name}} 
-    </view>
+    </button>
     </div>
    </div> 
 </div>

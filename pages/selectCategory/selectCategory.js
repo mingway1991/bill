@@ -2,14 +2,18 @@ Page({
   data: {
     access_token: '',
     categories: [],
-    selected_category: {}
+    selectedCategoryIdArray: []
   },
-  onLoad: function () {
+  onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '选择类别'
     })
     this.access_token = wx.getStorageSync('access_token')
     this.getAllCategories()
+    var categoryIdArray = options['categoryIdStr'].split(',')
+    this.setData({
+      selectedCategoryIdArray: categoryIdArray
+    })
   },
   onShow: function () {
     var that = this
@@ -67,8 +71,21 @@ Page({
         // success
         wx.hideToast();
         if (res.statusCode == 200) {
+          var categories = res.data['data']
+          for (var indexX in categories) {
+            var category = categories[indexX]
+            var isDisabled = false
+            for (var indexY in that.data.selectedCategoryIdArray) {
+              var selectedId = that.data.selectedCategoryIdArray[indexY]
+              if (category['id'] == selectedId) {
+                isDisabled = true
+                break
+              }
+            }
+            category['disabled'] = isDisabled
+          }
           that.setData({
-            categories: res.data['data']
+            categories: categories
           });
         } else {
           console.log(res.data);

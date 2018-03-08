@@ -1,6 +1,8 @@
-<button bindtap='gotoSelectCategory'>添加条目</button>
+<view class="weui-media-box">
+  <button bindtap='gotoSelectCategory' class="weui-btn mini-btn weui-flex__item" type="primary" size="mini">添加条目</button>
+</view>
 <div class='page list js_show'>
-<div class="weui-cells__title">记录</div> 
+<div class="weui-cells__title">记录条目</div> 
    <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
     <div class="weui-cell__bd"> 
      <p>{{idx+1}}.</p> {{category.name}} 
@@ -10,4 +12,7 @@
     </div>
    </div> 
 </div>
-<button bindtap='saveRecord'>保存</button>
+
+<view class="weui-media-box">
+  <button bindtap='saveRecord' class="weui-btn mini-btn weui-flex__item" type="primary">保存</button>
+</view>

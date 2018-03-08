@@ -43,8 +43,12 @@ Page({
         // success
         wx.hideToast();
         if (res.statusCode == 200) {
+          var categories = []
+          if (res.data['data']) {
+            categories = res.data['data']
+          }
           that.setData({
-            categories: res.data['data']
+            categories: categories
           }); 
         } else {
           console.log(res.data);
