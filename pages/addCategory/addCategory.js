@@ -1,65 +1,54 @@
+var util = require('../../utils/util.js')
+
 Page({
   data: {
     access_token: ''
   },
-  onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: '新增类别'
-    })
-    this.access_token = wx.getStorageSync('access_token')
-  },
   onShow: function () {
     var that = this
-    //如果 isBack 为 true，就返回上一页
     if (that.data.isBack) {
       wx.navigateBack()
     }
   },
+  onLoad: function () {
+    let that = this;
+    wx.setNavigationBarTitle({
+      title: '新增类别'
+    })
+    that.access_token = wx.getStorageSync('access_token')
+  },
+  //提交
   formSubmit: function(e) {
-    console.log(e)
+    let that = this;
     if (e['type'] == 'submit') {
       var value = e['detail']['value']['input']
       if (value.length == 0) {
-        wx.showToast({
-          title: '请输入内容',
-          icon: 'success',
-          duration: 1500,
-          mask: true
-        })
+        util.showToast('请输入内容');
       } else {
-        this.NewCategory(value)
+        that.NewCategory(value)
       }
     }
   }, 
+  //请求创建类别
   NewCategory: function(name) {
-    //创建一个dialog
-    wx.showToast({
-      title: '正在加载...',
-      icon: 'loading',
-      duration: 10000
-    });
-    //请求服务器
+    let that = this;
+    util.showLoadingToast('正在创建...');
     wx.request({
       url: 'https://api.bohetanglao.com/app/bill/categories',
       data: {
         'name': name
       },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + this.access_token
-      }, // 设置请求的 header
+      },
       success: function (res) {
         // success
         wx.hideToast();
         if (res.statusCode == 200) {
           console.log(res.data['data']);
-          wx.showToast({
-            title: '新建成功',
-            icon: 'success',
-            duration: 1500,
-            mask: true
-          })
+          util.showSuccessToast('创建成功');
           setTimeout(function () {
             wx.navigateBack({
               delta: 1
@@ -67,20 +56,11 @@ Page({
           }, 1500)
         } else {
           console.log(res.data);
-          wx.showToast({
-            title: '新建失败',
-            icon: 'success',
-            duration: 1500,
-            mask: true
-          })
+          util.showToast('创建失败');
         }
       },
       fail: function () {
-        // fail
-        wx.hideToast();
-      },
-      complete: function () {
-        // complete
+        util.hideToast();
       }
     })
   }

@@ -20,7 +20,11 @@ const formatNumber = n => {
 
 module.exports = {
   formatTime: formatTime,
-  encrpy: encrpy
+  encrpy: encrpy,
+  showLoadingToast: showLoadingToast,
+  showSuccessToast: showSuccessToast,
+  showToast: showToast,
+  hideToast: hideToast
 }
 
 function encrpy(plaintText) {
@@ -39,4 +43,32 @@ function encrpy(plaintText) {
   var base64 = new Base64();
   var result = base64.encode(encryptedStr);
   return result;
+}
+
+function showLoadingToast(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'loading',
+    duration: 10000
+  });
+}
+
+function showSuccessToast(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'success',
+    duration: 1500
+  });
+}
+
+function showToast(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'none',
+    duration: 1500
+  });
+}
+
+function hideToast() {
+  wx.hideToast();
 }

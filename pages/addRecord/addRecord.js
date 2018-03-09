@@ -1,32 +1,26 @@
+var util = require('../../utils/util.js')
+
 Page({
   data: {
     access_token: '',
     categories: []
   },
-  onLoad: function () {
-    wx.setNavigationBarTitle({
-      title: '记账'
-    })
-    this.access_token = wx.getStorageSync('access_token')
-    this.getLastRecord()
-  },
   onShow: function () {
     var that = this
-    //如果 isBack 为 true，就返回上一页
     if (that.data.isBack) {
       wx.navigateBack()
     }
   },
-  gotoSelectCategory: function() {
-    let that = this
-    var categoryIdArray = []
-    for (var index in that.data.categories) {
-      categoryIdArray.push(that.data.categories[index]['id'])
-    }
-    var categoryIdStr = categoryIdArray.join(',')
-    wx.navigateTo({ url: '../../pages/selectCategory/selectCategory?categoryIdStr='+ categoryIdStr})
+  onLoad: function () {
+    let that = this;
+    wx.setNavigationBarTitle({
+      title: '记账'
+    })
+    that.access_token = wx.getStorageSync('access_token')
+    that.getLastRecord()
   },
-  changeValue: function(e) {
+  //动作
+  changeValue: function (e) {
     let that = this
     console.log(e)
     if (e['type'] == 'change') {
@@ -40,30 +34,32 @@ Page({
       }
     }
   },
-  saveRecord: function() {
+  saveRecord: function () {
     this.newRecord()
   },
+  //跳转
+  gotoSelectCategory: function() {
+    let that = this
+    var categoryIdArray = []
+    for (var index in that.data.categories) {
+      categoryIdArray.push(that.data.categories[index]['id'])
+    }
+    var categoryIdStr = categoryIdArray.join(',')
+    wx.navigateTo({ url: '../../pages/selectCategory/selectCategory?categoryIdStr='+ categoryIdStr})
+  },
+  //请求最后一条记录
   getLastRecord: function () {
     let that = this;
-    //创建一个dialog
-    wx.showToast({
-      title: 'loading...',
-      icon: 'loading',
-      duration: 10000
-    });
-    //请求服务器
+    util.showLoadingToast('正在加载...');
     wx.request({
       url: 'https://api.bohetanglao.com/app/bill/last_record',
-      data: {
-      },
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + that.access_token
-      }, // 设置请求的 header
+      },
       success: function (res) {
-        // success
-        wx.hideToast();
+        util.hideToast();
         if (res.statusCode == 200) {
           if (res.data['errorCode'] == 0) {
             console.log(res.data['data']);
@@ -90,14 +86,11 @@ Page({
         }
       },
       fail: function () {
-        // fail
-        wx.hideToast();
-      },
-      complete: function () {
-        // complete
+        util.hideToast();
       }
     })
   },
+  //请求新增记录
   newRecord: function() {
     let that = this
     var items = []
@@ -107,30 +100,23 @@ Page({
     }
     var record_str = items.join(',')
     console.log(record_str)
-    //创建一个dialog
-    wx.showToast({
-      title: 'loading...',
-      icon: 'loading',
-      duration: 10000
-    });
-    //请求服务器
+    util.showLoadingToast('正在创建...');
     wx.request({
       url: 'https://api.bohetanglao.com/app/bill/records',
       data: {
         'record_str': record_str
       },
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer ' + that.access_token
-      }, // 设置请求的 header
+      },
       success: function (res) {
-        // success
-        wx.hideToast();
+        util.hideToast();
         if (res.statusCode == 200) {
           if (res.data['errorCode'] == 0) {
             console.log(res.data['data']);
-            wx.navigateBack();
+            util.showSuccessToast('创建成功');
           } else {
             console.log(res.data);
           }
@@ -139,11 +125,7 @@ Page({
         }
       },
       fail: function () {
-        // fail
-        wx.hideToast();
-      },
-      complete: function () {
-        // complete
+        util.hideToast();
       }
     })
   }

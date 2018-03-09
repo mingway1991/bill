@@ -19,6 +19,11 @@
       "iconPath":"images/index.png",
       "selectedIconPath":"images/index_selected.png"
       },
+      {"pagePath": "pages/addRecord/addRecord",
+        "text": "记账",
+        "iconPath": "images/record.png",
+        "selectedIconPath": "images/record_selected.png"
+      },
       {"pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "images/my.png",
@@ -28,8 +33,8 @@
   },
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "天天爱记账",
+    "navigationBarTextStyle":"#fff"
   }
 }
