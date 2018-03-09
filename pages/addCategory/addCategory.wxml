@@ -1,10 +1,20 @@
-<view class="weui-media-box">
-  <form bindsubmit="formSubmit">
+
+<view class="weui-cells__title">表单</view>
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+<form bindsubmit="formSubmit">
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+          <view class="weui-label">名称</view>
+      </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" name="input" placeholder="请输入类别名称"></input>
+          <input class="weui-input" name="input" placeholder="请输入类别名称" bindinput="inputChange"/>
       </view>
-      <view class="btn-area">
-          <button formType="submit" type="primary">提交</button>
-      </view>
-  </form>
+  </view>
 </view>
+<view class="weui-btn-area">
+   <button class='weui-btn' formType="submit" type="primary">提交</button>
+</view>
+</form>
+
+

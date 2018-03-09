@@ -2,7 +2,9 @@ var util = require('../../utils/util.js')
 
 Page({
   data: {
-    access_token: ''
+    access_token: '',
+    showTopTips: false,
+    errorMsg: ''
   },
   onShow: function () {
     var that = this
@@ -17,14 +19,33 @@ Page({
     })
     that.access_token = wx.getStorageSync('access_token')
   },
+  inputChange: function(e) {
+    let that = this;
+    if (e['type'] == 'input') {
+      if (e['detail']['value'].length > 0) {
+        that.setData({
+          showTopTips: false,
+          errorMsg: ''
+        });
+      }
+    }
+  }
+  ,
   //提交
   formSubmit: function(e) {
     let that = this;
     if (e['type'] == 'submit') {
       var value = e['detail']['value']['input']
       if (value.length == 0) {
-        util.showToast('请输入内容');
+        that.setData({
+          showTopTips: true,
+          errorMsg: '请输入内容'
+        });
       } else {
+        // that.setData({
+        //   showTopTips: false,
+        //   errorMsg: ''
+        // });
         that.NewCategory(value)
       }
     }

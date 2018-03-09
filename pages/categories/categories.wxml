@@ -1,16 +1,6 @@
 
-<view class="page">
-    <view class="page__bd">
-      <view class="weui-panel">
-            <view class="weui-panel__bd">
-                <view class="weui-media-box">
-                  <button class="weui-btn mini-btn weui-flex__item" type="primary" size="mini" bindtap='gotoAddCategory'>新增类别</button>
-                </view>
-            </view>
-      </view>
-    </view>
-</view>
 
+<button class="weui-btn mini-btn weui-flex__item" type="primary" size="mini" bindtap='gotoAddCategory'>新增类别</button>
 <view class='page list js_show'>
 <view class="weui-cells__title">类别列表</view> 
    <view class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 

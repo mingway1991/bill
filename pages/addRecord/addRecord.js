@@ -117,6 +117,9 @@ Page({
           if (res.data['errorCode'] == 0) {
             console.log(res.data['data']);
             util.showSuccessToast('创建成功');
+            setTimeout(function () {
+              that.getLastRecord()
+            }, 1500)
           } else {
             console.log(res.data);
           }

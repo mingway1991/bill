@@ -17,7 +17,6 @@ Page({
   },
   getTotalMoney: function() {
     let that = this;
-    util.showLoadingToast('正在加载...');
     wx.request({
       url: 'https://api.bohetanglao.com/app/bill/total',
       method: 'GET',
@@ -26,7 +25,6 @@ Page({
         'Authorization': 'Bearer ' + that.access_token
       },
       success: function (res) {
-        util.hideToast();
         if (res.statusCode == 200) {
           if (res.data['errorCode']==0) {
             console.log(res.data['data']);
@@ -46,7 +44,6 @@ Page({
         }
       },
       fail: function () {
-        util.hideToast();
       }
     })
   }

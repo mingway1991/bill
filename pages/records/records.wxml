@@ -2,8 +2,14 @@
 <view class='page list js_show'>
 <view class="weui-cells__title">记录列表</view> 
    <view class="weui-cell weui-cell_swiped" wx:for="{{records}}" wx:for-index="idx" wx:for-item="record"> 
-    <view class="weui-cell__bd"> 
-     <p>{{idx+1}}.</p> 金额：{{record.money}} {{record.created_at}}
+    <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{idx+1}}.¥:{{record.money}}</view>
+                    <view class="weui-media-box__desc"> {{record.created_at}}</view>
+                </view>
+            </view>
     </view>
-   </view> 
+      <view class="weui-loading" hidden="{{is_loading}}"></view>   
+     <view class="weui-loadmore__tips" hidden="{{is_loading}}">正在载入更多...</view>   
+    <view class="weui-loadmore" hidden="{{has_more_data}}">已加载全部</view> 
 </view>
