@@ -1,7 +1,9 @@
 <!--index.wxml--> 
-<view class="page">
-    <view class="page__hd">
-        <view class="page__title">总金额：{{total}}</view>
-        <view class="page__desc">{{create_time}}</view>
-    </view>
+
+<view class="container">
+	<view class="index-top">
+    <text class='money-title'>总金额</text>
+    <text class='money'>{{total}}</text>
+    <text class="time">{{create_time}}</text>
+	</view>
 </view>
