@@ -12,7 +12,7 @@
   ],
   "tabBar":{
     "color":"#000000",
-    "selectedColor": "#1296db",
+    "selectedColor": "#007500",
     "list":[
       {"pagePath":"pages/index/index",
       "text":"首页",
@@ -39,7 +39,7 @@
   },
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "天天爱记账",
     "navigationBarTextStyle":"#fff"
   }

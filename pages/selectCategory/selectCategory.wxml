@@ -1,10 +1,22 @@
-<div class='page list js_show'>
-<div class="weui-cells__title">类别列表</div> 
-   <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
-    <div class="weui-cell__bd"> 
-    <button bindtap='selectCategoryAction' data-alpha-beta="{{category.id}}" disabled="{{category.disabled}}">
-     <p>{{idx+1}}.</p> {{category.name}} 
-    </button>
-    </div>
-   </div> 
-</div>
+
+<view class="page">
+    <view class="page__bd">
+    <view class="weui-cells__title">请选择记录条目的类别</view>
+        <view class="weui-cells weui-cells_after-title">
+            <checkbox-group bindchange="checkboxChange">
+                <label class="weui-cell weui-check__label" wx:for="{{categories}}" wx:key="id">
+                    <checkbox class="weui-check" value="{{item.id}}" checked="{{(item.isDisabled || item.checked)}}"/>
+
+                    <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!(item.isDisabled || item.checked)}}"></icon>
+                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{(item.isDisabled || item.checked)}}"></icon>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                </label>
+            </checkbox-group>
+        </view>
+        <view class="weui-btn-area">
+   <button bindtap='saveSelected' class="weui-btn mini-btn weui-flex__item" type="primary">确定</button>
+</view>
+    </view>
+</view>

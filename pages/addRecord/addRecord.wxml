@@ -1,18 +1,21 @@
-<view class="weui-media-box">
-  <button bindtap='gotoSelectCategory' class="weui-btn mini-btn weui-flex__item" type="primary" size="mini">添加条目</button>
-</view>
-<div class='page list js_show'>
-<div class="weui-cells__title">记录条目</div> 
-   <div class="weui-cell weui-cell_swiped" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category"> 
-    <div class="weui-cell__bd"> 
-     <p>{{idx+1}}.</p> {{category.name}} 
-    </div>
-    <div class="weui-cell__bd"> 
-     <input class="weui-input" name="input" placeholder="请输入金额" value="{{category.value}}" bindchange="changeValue" data-alpha-beta="{{category.id}}"></input>
-    </div>
-   </div> 
-</div>
 
-<view class="weui-media-box">
-  <button bindtap='saveRecord' class="weui-btn mini-btn weui-flex__item" type="primary">保存</button>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells__title">
+        记录条目列表
+        </view> 
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category">
+                <view class="weui-cell__bd"><p>{{idx+1}}.</p> {{category.name}} </view>
+                <input class="weui-input" name="input" placeholder="请输入金额" value="{{category.value}}" bindchange="changeValue" data-alpha-beta="{{category.id}}"></input>
+            </view>
+            <view class="weui-cell weui-cell_link">
+          <view class="weui-cell__bd" bindtap='gotoSelectCategory'>添加更多</view>
+        </view>
+        </view>
+
+        <view class="weui-btn-area">
+   <button bindtap='saveRecord' class="weui-btn mini-btn weui-flex__item" type="primary">保存</button>
+</view>
+    </view>
 </view>

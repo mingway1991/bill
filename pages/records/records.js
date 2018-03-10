@@ -44,7 +44,9 @@ Page({
   //请求记录
   getRecords: function (is_refresh) {
     let that = this;
-    that.data.is_loading = true;
+    that.setData({
+      is_loading: true
+    });
     wx.request({
       url: 'https://api.bohetanglao.com/app/bill/records?page_index=' + that.data.page_index + '&page_size=' + that.data.page_size,
       method: 'GET',
@@ -53,7 +55,9 @@ Page({
         'Authorization': 'Bearer ' + that.access_token
       },
       success: function (res) {
-        that.data.is_loading = false;
+        that.setData({
+          is_loading: false
+        });
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh()
         if (res.statusCode == 200) {
@@ -98,7 +102,9 @@ Page({
             }
           }
         } else {
-          that.data.is_loading = false;
+          that.setData({
+            is_loading: false
+          });
           util.showToast('请求出错');
         }
       }
