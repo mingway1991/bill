@@ -1,0 +1,14 @@
+
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells__title">
+        {{record.created_at}}
+        </view> 
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell" wx:for="{{record.items}}" wx:for-index="idx" wx:for-item="item" wx:key="id">
+                <view class="weui-cell__bd"><p>{{idx+1}}.</p> {{item.category_name}} </view>
+                <view class="weui-cell__ft"> {{item.money}} </view>
+        </view>
+        </view>
+    </view>
+</view>

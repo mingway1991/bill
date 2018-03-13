@@ -8,7 +8,8 @@
     "pages/my/my",
     "pages/records/records",
     "pages/addRecord/addRecord",
-    "pages/selectCategory/selectCategory"
+    "pages/selectCategory/selectCategory",
+    "pages/recordDetail/recordDetail"
   ],
   "tabBar":{
     "color":"#000000",

@@ -23,6 +23,26 @@ Page({
     that.access_token = wx.getStorageSync('access_token')
     that.getRecords(true)
   },
+  tapRecord: function (e) {
+    let that = this;
+    if (e['type'] == 'tap') {
+      var value = e['currentTarget']['dataset']['alphaBeta'];
+      console.log(value)
+      var pass_record = null;
+      for (var index in that.data.records) {
+        var record = that.data.records[index]
+        if (record.id == value) {
+          pass_record = record
+          break
+        }
+      }
+      console.log(pass_record)
+      var model = JSON.stringify(pass_record);
+      wx.navigateTo({
+        url: '../../pages/recordDetail/recordDetail?record=' + model,
+      })
+    }
+  },
 /**
  * 页面相关事件处理函数--监听用户下拉动作
  */

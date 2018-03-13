@@ -1,17 +1,23 @@
 <!--pages/records/records.wxml-->
-<view class="page">
-    <view class="weui-cells__title">记录列表</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell" wx:for="{{records}}" wx:for-index="idx" wx:for-item="record">
-                <view class="weui-cell__bd">{{idx+1}}.¥:{{record.money}}</view>
-                <view class="weui-media-box__desc"> {{record.created_at}}</view>
-            </view>
+  <view class="page">
+<view class='weui-panel__bd'>
+  <view class="weui-media-box weui-media-box_small-appmsg">
+    <view class="weui-cells weui-cells_in-small-appmsg">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{records}}" wx:for-index="idx" wx:for-item="record" wx:key="id">
+            <view class="weui-cell__bd weui-cell_primary" bindtap='tapRecord' data-alpha-beta="{{record.id}}">
+                  <view class="weui-cell__bd">{{idx+1}}.¥:{{record.money}}</view>
+                  <view class="weui-media-box__desc"> {{record.created_at}}</view> 
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
-    <view class="weui-loadmore" hidden="{{!is_loading}}">
+    </view>
+  </view>
+   <view class="weui-loadmore" hidden="{{!is_loading}}">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">正在加载</view>
         </view>
         <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot" hidden="{{has_more_data}}">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
-        </view>
-</view>
+    </view>
+  </view>
+</view> 

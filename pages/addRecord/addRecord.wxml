@@ -5,7 +5,7 @@
         记录条目列表
         </view> 
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category">
+            <view class="weui-cell" wx:for="{{categories}}" wx:for-index="idx" wx:for-item="category" wx:key="id">
                 <view class="weui-cell__bd"><p>{{idx+1}}.</p> {{category.name}} </view>
                 <input class="weui-input" name="input" placeholder="请输入金额" value="{{category.value}}" bindchange="changeValue" data-alpha-beta="{{category.id}}"></input>
             </view>
